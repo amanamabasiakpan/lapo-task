@@ -2,12 +2,16 @@ import type { FC } from 'react';
 import { sidebarData } from '../store/data';
 import { getIconComponent } from '../utils/helpers';
 import { LogOut } from 'lucide-react';
+import { useSelector } from 'react-redux';
+import { selectSidebarIsOpen } from '../store/sidebarSlice';
 
 interface SidebarProps {}
 
 const Sidebar: FC<SidebarProps> = () => {
+  const isOpen = useSelector(selectSidebarIsOpen);
+
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-white border-r border-gray-100 flex flex-col">
+    <aside className={`fixed left-0 top-0 h-screen bg-white border-r border-gray-100 flex flex-col transition-all duration-300 ${isOpen ? 'w-64' : 'w-0 overflow-hidden'}`}>
       {/* Logo */}
       <div className="p-6 flex-none">
         <img src="/lapo.png" alt="LAPO Logo" className="h-10 -ml-5" />

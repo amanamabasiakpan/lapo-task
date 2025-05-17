@@ -29,6 +29,7 @@ const QuickActions: FC<QuickActionsProps> = ({ className = '' }) => {
           ))}
         </div>
       </div>
+      <h2 className="text-base font-semibold text-gray-800 mt-8 mb-2">Analytics</h2>
     </div>
   );
 };

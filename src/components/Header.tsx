@@ -1,5 +1,7 @@
 import type { FC } from 'react';
 import { Bell, Search, LayoutDashboard, Calendar } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { toggleSidebar } from '../store/sidebarSlice';
 
 interface HeaderProps {
   className?: string;
@@ -12,6 +14,7 @@ const Header: FC<HeaderProps> = ({
   userName = 'Nazeer',
   lastLogin = '26/11/2024 14:39:58'
 }) => {
+  const dispatch = useDispatch();
   const today = new Date().toLocaleDateString('en-GB', {
     day: '2-digit',
     month: 'short',
@@ -22,10 +25,13 @@ const Header: FC<HeaderProps> = ({
     <div className={`w-full space-y-6 ${className}`}>
       {/* Top Bar */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-gray-500">
+        <button 
+          onClick={() => dispatch(toggleSidebar())}
+          className="flex items-center gap-2 text-gray-500 hover:text-gray-700 transition-colors"
+        >
           <LayoutDashboard size={18} />
           <span className="text-sm font-medium">Dashboard</span>
-        </div>
+        </button>
 
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-3 bg-gray-50 px-3 py-2 rounded-lg">
